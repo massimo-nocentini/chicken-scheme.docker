@@ -1,7 +1,5 @@
 
-FROM ubuntu:latest
-
-WORKDIR /home
+FROM debian:stable
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget clang make build-essential git libuuid1 sudo
 
