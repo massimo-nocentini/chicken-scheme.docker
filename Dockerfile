@@ -1,13 +1,6 @@
 
-FROM debian:stable
+FROM ghcr.io/massimo-nocentini/chicken-scheme.docker:5.4.0
 
-RUN apt-get update && apt-get upgrade -y && apt-get install -y wget clang make build-essential git libuuid1 sudo
-
-WORKDIR /home
-
-RUN wget https://code.call-cc.org/releases/5.4.0/chicken-5.4.0.tar.gz --no-verbose && \
-	tar xf chicken-5.4.0.tar.gz && cd chicken-5.4.0 && \
-	make C_COMPILER=clang CXX_COMPILER=clang++ LINKER=clang && make C_COMPILER=clang CXX_COMPILER=clang++ LINKER=clang install && \
-	cd .. && rm -rf chicken-5.4.0*
+RUN chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms
 
 
