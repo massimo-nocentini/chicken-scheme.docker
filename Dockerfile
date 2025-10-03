@@ -3,6 +3,8 @@ FROM debian:stable
 
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget clang make build-essential git libuuid1 sudo
 
+WORKDIR /home
+
 RUN wget https://code.call-cc.org/releases/5.4.0/chicken-5.4.0.tar.gz --no-verbose && \
 	tar xf chicken-5.4.0.tar.gz && cd chicken-5.4.0 && \
 	make C_COMPILER=clang CXX_COMPILER=clang++ LINKER=clang && make C_COMPILER=clang CXX_COMPILER=clang++ LINKER=clang install && \
