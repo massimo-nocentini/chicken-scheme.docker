@@ -1,5 +1,5 @@
 #
-name: Create and publish a Docker image
+name: CHICKEN Scheme Docker image, 5.4.0 on Ubuntu (clang), eggs included.
 
 # Configures this workflow to run every time a change is pushed to the branch called `release`.
 on:
@@ -57,4 +57,3 @@ jobs:
                   subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}
                   subject-digest: ${{ steps.push.outputs.digest }}
                   push-to-registry: true
-
