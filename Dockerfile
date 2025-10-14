@@ -1,6 +1,8 @@
 
 FROM ubuntu:latest
 
+WORKDIR /home/ubuntu
+
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget clang make build-essential git libuuid1 sudo
 
 RUN wget https://code.call-cc.org/releases/5.4.0/chicken-5.4.0.tar.gz --no-verbose && \
