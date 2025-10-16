@@ -1,7 +1,7 @@
 
 FROM ghcr.io/massimo-nocentini/chicken-scheme.docker:5.4.0
 
-RUN chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 s11n datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms gfortran
+RUN sudo apt-get install -y gfortran && chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 s11n datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms
 
 RUN wget --no-verbose https://www.lua.org/ftp/lua-5.4.8.tar.gz && tar xf lua-5.4.8.tar.gz && cd lua-5.4.8 \
 	&& make CC="clang" MYCFLAGS="-fPIC" linux \
