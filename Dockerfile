@@ -3,12 +3,18 @@ FROM --platform=$BUILDPLATFORM ghcr.io/massimo-nocentini/chicken-scheme.docker:5
 
 RUN sudo apt-get install -y gfortran && chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 s11n datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms
 
-RUN wget --no-verbose https://www.lua.org/ftp/lua-5.4.8.tar.gz && tar xf lua-5.4.8.tar.gz && cd lua-5.4.8 \
+RUN wget --no-verbose https://www.lua.org/ftp/lua-5.5.0.tar.gz && tar xf lua-5.5.0.tar.gz && cd lua-5.5.0 \
 	&& make CC="clang" MYCFLAGS="-fPIC" linux \
 	&& sudo make CC="clang" MYCFLAGS="-fPIC" linux install \
-	&& cd .. && rm -rf lua-5.4.8*
+	&& cd .. && rm -rf lua-5.5.0*
 
 RUN wget --no-verbose https://netcologne.dl.sourceforge.net/project/judy/judy/Judy-1.0.5/Judy-1.0.5.tar.gz \
 	&& tar xf Judy-1.0.5.tar.gz && cd judy-1.0.5 \
 	&& CC="clang" CXX="clang++" ./configure --enable-64-bit \
 	&& make && sudo make install && cd .. && rm -rf judy-1.0.5 Judy-1.0.5.tar.gz
+
+RUN wget --no-verbose https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz \
+	&& tar xf highway-1.3.0.tar.gz && cd highway-1.3.0 \
+	&& mkdir bbuild && cd bbuild \
+	&& CC=clang CXX=clang++ cmake .. \
+	&& cmake --build . && sudo cmake --install . && cd ../.. && rm -rf highway-1.3.0 highway-1.3.0.tar.gz
