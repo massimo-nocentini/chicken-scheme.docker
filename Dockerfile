@@ -13,6 +13,10 @@ RUN wget --no-verbose https://netcologne.dl.sourceforge.net/project/judy/judy/Ju
 	&& CC="clang" CXX="clang++" ./configure --enable-64-bit \
 	&& make && sudo make install && cd .. && rm -rf judy-1.0.5 Judy-1.0.5.tar.gz
 
+RUN wget --no-verbose https://www.jjj.de/fxt/fxt-2025.06.26.tar.gz \
+	&& tar xf fxt-2025.06.26.tar.gz && cd fxt \
+	&& CC="clang" CXX="clang++" make && sudo make install && cd .. && rm -rf fxt fxt-2025.06.26.tar.gz
+
 RUN wget --no-verbose https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz \
 	&& tar xf highway-1.3.0.tar.gz && cd highway-1.3.0 \
 	&& mkdir bbuild && cd bbuild \
