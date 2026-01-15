@@ -1,7 +1,7 @@
 
 FROM --platform=$BUILDPLATFORM ghcr.io/massimo-nocentini/chicken-scheme.docker:5.4.0
 
-RUN sudo apt-get install -y gfortran && chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 s11n datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms
+RUN sudo apt-get install -y gfortran && chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 s11n datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms vector-lib
 
 RUN wget --no-verbose https://www.lua.org/ftp/lua-5.5.0.tar.gz && tar xf lua-5.5.0.tar.gz && cd lua-5.5.0 \
 	&& make CC="clang" MYCFLAGS="-fPIC" linux \
@@ -20,5 +20,5 @@ RUN wget --no-verbose https://www.jjj.de/fxt/fxt-2025.06.26.tar.gz \
 RUN wget --no-verbose https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz \
 	&& tar xf highway-1.3.0.tar.gz && cd highway-1.3.0 \
 	&& mkdir bbuild && cd bbuild \
-	&& CC=clang CXX=clang++ cmake -DBUILD_SHARED_LIBS=ON .. \
+	&& CC="clang" CXX="clang++" cmake -DBUILD_SHARED_LIBS=ON .. \
 	&& cmake --build . && sudo cmake --install . && cd ../.. && rm -rf highway-1.3.0 highway-1.3.0.tar.gz
