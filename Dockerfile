@@ -17,8 +17,8 @@ RUN wget --no-verbose https://www.jjj.de/fxt/fxt-2025.06.26.tar.gz \
 	&& tar xf fxt-2025.06.26.tar.gz && cd fxt \
 	&& CC="clang" CXX="clang++" make && sudo make install && cd .. && rm -rf fxt fxt-2025.06.26.tar.gz
 
-RUN wget --no-verbose https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz \
-	&& tar xf highway-1.3.0.tar.gz && cd highway-1.3.0 \
-	&& mkdir bbuild && cd bbuild \
-	&& CC="clang" CXX="clang++" cmake -DBUILD_SHARED_LIBS=ON .. \
-	&& cmake --build . && sudo cmake --install . && cd ../.. && rm -rf highway-1.3.0 highway-1.3.0.tar.gz
+# RUN wget --no-verbose https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz \
+# 	&& tar xf highway-1.3.0.tar.gz && cd highway-1.3.0 \
+# 	&& mkdir bbuild && cd bbuild \
+# 	&& CC="clang" CXX="clang++" cmake -DBUILD_SHARED_LIBS=ON .. \
+# 	&& cmake --build . && sudo cmake --install . && cd ../.. && rm -rf highway-1.3.0 highway-1.3.0.tar.gz
