@@ -8,7 +8,7 @@ RUN wget --no-verbose https://www.lua.org/ftp/lua-5.5.0.tar.gz && tar xf lua-5.5
 	&& sudo make CC="clang" MYCFLAGS="-fPIC" linux install \
 	&& cd .. && rm -rf lua-5.5.0*
 
-RUN wget --no-verbose https://netcologne.dl.sourceforge.net/project/judy/judy/Judy-1.0.5/Judy-1.0.5.tar.gz \
+RUN wget --no-verbose https://sourceforge.net/projects/judy/files/judy/Judy-1.0.5/Judy-1.0.5.tar.gz/download -O Judy-1.0.5.tar.gz \
 	&& tar xf Judy-1.0.5.tar.gz && cd judy-1.0.5 \
 	&& CC="clang" CXX="clang++" ./configure --enable-64-bit \
 	&& make && sudo make install && cd .. && rm -rf judy-1.0.5 Judy-1.0.5.tar.gz
