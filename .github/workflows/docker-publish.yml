@@ -1,10 +1,10 @@
 #
-name: CHICKEN Scheme Docker image, 5.4.0 on Ubuntu (clang), eggs included.
+name: CHICKEN Scheme Docker image, 6.0.0 on Ubuntu (clang), eggs included.
 
 # Configures this workflow to run every time a change is pushed to the branch called `release`.
 on:
     push:
-        branches: ["master", "5.4.0", "5.4.0-eggs-included"]
+        branches: ["6.0.0-eggs-included"]
 
 # Defines two custom environment variables for the workflow. These are used for the Container registry domain, and a name for the Docker image that this workflow builds.
 env:

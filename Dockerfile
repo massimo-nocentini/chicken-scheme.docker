@@ -1,24 +1,24 @@
 
-FROM --platform=$BUILDPLATFORM ghcr.io/massimo-nocentini/chicken-scheme.docker:5.4.0
+FROM --platform=$BUILDPLATFORM ghcr.io/massimo-nocentini/chicken-scheme.docker:6.0.0
 
 RUN apt-get update && apt-get install -y gfortran curl \
-	&& chicken-install -sudo scheme-indent srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 s11n datatype spiffy matchable miscmacros r7rs csv-abnf sxml-transforms vector-lib chickadee expand-full
+	&& chicken-install -sudo srfi-1 srfi-18 srfi-69 srfi-19 srfi-133 datatype spiffy matchable miscmacros r7rs sxml-transforms vector-lib expand-full
 
-RUN cd `csi -R chicken.platform -p '(chicken-home)'` && curl https://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-5.tgz | tar zx
+RUN cd `csi -R chicken.platform -p '(chicken-home)'` && curl https://call-cc.org/tarballs/chicken-doc/chicken-doc-repo-6.tgz | tar zx
 
-RUN wget --no-verbose https://www.lua.org/ftp/lua-5.5.0.tar.gz && tar xf lua-5.5.0.tar.gz && cd lua-5.5.0 \
-	&& make CC="clang" MYCFLAGS="-fPIC" linux \
-	&& sudo make CC="clang" MYCFLAGS="-fPIC" linux install \
-	&& cd .. && rm -rf lua-5.5.0*
+# RUN wget --no-verbose https://www.lua.org/ftp/lua-5.5.0.tar.gz && tar xf lua-5.5.0.tar.gz && cd lua-5.5.0 \
+# 	&& make CC="clang" MYCFLAGS="-fPIC" linux \
+# 	&& sudo make CC="clang" MYCFLAGS="-fPIC" linux install \
+# 	&& cd .. && rm -rf lua-5.5.0*
 
-RUN wget --no-verbose https://sourceforge.net/projects/judy/files/judy/Judy-1.0.5/Judy-1.0.5.tar.gz/download -O Judy-1.0.5.tar.gz \
-	&& tar xf Judy-1.0.5.tar.gz && cd judy-1.0.5 \
-	&& CC="clang" CXX="clang++" ./configure --enable-64-bit \
-	&& make && sudo make install && cd .. && rm -rf judy-1.0.5 Judy-1.0.5.tar.gz
+# RUN wget --no-verbose https://sourceforge.net/projects/judy/files/judy/Judy-1.0.5/Judy-1.0.5.tar.gz/download -O Judy-1.0.5.tar.gz \
+# 	&& tar xf Judy-1.0.5.tar.gz && cd judy-1.0.5 \
+# 	&& CC="clang" CXX="clang++" ./configure --enable-64-bit \
+# 	&& make && sudo make install && cd .. && rm -rf judy-1.0.5 Judy-1.0.5.tar.gz
 
-RUN wget --no-verbose https://www.jjj.de/fxt/fxt-2025.06.26.tar.gz \
-	&& tar xf fxt-2025.06.26.tar.gz && cd fxt \
-	&& CC="clang" CXX="clang++" make && sudo make install && cd .. && rm -rf fxt fxt-2025.06.26.tar.gz
+# RUN wget --no-verbose https://www.jjj.de/fxt/fxt-2025.06.26.tar.gz \
+# 	&& tar xf fxt-2025.06.26.tar.gz && cd fxt \
+# 	&& CC="clang" CXX="clang++" make && sudo make install && cd .. && rm -rf fxt fxt-2025.06.26.tar.gz
 
 # RUN wget --no-verbose https://github.com/google/highway/releases/download/1.3.0/highway-1.3.0.tar.gz \
 # 	&& tar xf highway-1.3.0.tar.gz && cd highway-1.3.0 \
